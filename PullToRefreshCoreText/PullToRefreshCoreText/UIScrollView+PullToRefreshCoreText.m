@@ -70,6 +70,7 @@
     
     self.pullToRefreshView = [[PullToRefreshCoreTextView alloc] initWithFrame:ptrRect pullText:pullText pullTextColor:pullTextColor pullTextFont:pullTextFont refreshingText:refreshingText refreshingTextColor:refreshingTextColor refreshingTextFont:refreshingTextFont action:action];
     [self.pullToRefreshView setScrollView:self];
+    self.pullToRefreshView.originalTopInset = self.contentInset.top;
 
     [self addSubview:self.pullToRefreshView];
 }

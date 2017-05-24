@@ -98,7 +98,7 @@
     
     if (self.scrollView.contentInset.top > 0) {
         [UIView animateWithDuration:0.2 animations:^{
-            self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+            self.scrollView.contentInset = UIEdgeInsetsMake(self.originalTopInset, 0, 0, 0);
         }];
     }
 }
@@ -179,7 +179,7 @@
         if (self.isLoading)
             return;
         
-        CGFloat offset = self.scrollView.contentOffset.y + self.triggerThreshold;
+        CGFloat offset = (self.scrollView.contentOffset.y + self.originalTopInset) + self.triggerThreshold;
         if (offset <= 0) {
             
             //animate pull text
@@ -202,7 +202,7 @@
             [self startLoading];
             
             [UIView animateWithDuration:0.2 animations:^{
-                [self.scrollView setContentInset:UIEdgeInsetsMake(self.triggerOffset + self.triggerThreshold, 0, 0, 0)];
+                [self.scrollView setContentInset:UIEdgeInsetsMake(self.triggerOffset + self.triggerThreshold + self.originalTopInset, 0, 0, 0)];
             }];
         } else {
             [(CALayer *)[self.layer.sublayers firstObject] setTimeOffset:0];
